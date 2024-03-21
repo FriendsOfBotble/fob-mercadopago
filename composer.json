@@ -1,0 +1,8 @@
+{
+    "name": "friendsofbotble/fob-mercadopago",
+    "description": "Mercado Pago payment gateway integration for Botble eCommerce system",
+    "type": "package",
+    "require": {
+        "mercadopago/dx-php": "^3.0.3"
+    }
+}

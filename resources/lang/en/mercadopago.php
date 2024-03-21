@@ -1,0 +1,46 @@
+<?php
+
+return [
+    'environment' => 'Environment',
+    'sandbox' => 'Sandbox',
+    'live' => 'Live',
+    'public_key' => 'Public Key',
+    'access_token' => 'Access Token',
+    'webhook_url' => 'Webhook URL',
+    'documentation' => 'documentation',
+    'not_supported_partial_refund' => 'Partial refund is not supported by Mercado Pago.',
+    'amount' => 'Amount',
+    'date_created' => 'Date created',
+    'instructions' => [
+        'create_account' => "Create a :link account, if you don't have one.",
+        'get_credentials' => 'You can find the credentials in <strong>Application details</strong> > <strong>Credentials</strong> with in :link.',
+        'your_integrations' => 'Your integrations',
+        'learn_more' => 'To learn more about the integration process, read the :link.',
+    ],
+    'webhook_guide' => [
+        'title' => 'Configure Webhook',
+        'description' => 'To receive notifications about payment status, you need to configure the Webhook URL in your Mercado Pago account. Read the :link for more details about the configuration.',
+    ],
+    'detail' => [
+        'title' => 'Payment details',
+        'payer_name' => 'Payer name',
+        'payer_email' => 'Payer email',
+        'payer_phone' => 'Payer phone',
+        'payer_identification' => 'Payer identification',
+        'payment_id' => 'Payment ID',
+        'payment_method' => 'Payment method',
+        'payment_type' => 'Payment type',
+        'cardholder' => 'Cardholder',
+        'card' => 'Card',
+        'installments' => 'Installments',
+        'date_approved' => 'Date approved',
+        'date_last_updated' => 'Date last updated',
+        'additional_info' => 'Additional info',
+    ],
+    'refund' => [
+        'title' => 'Refund details',
+        'id' => 'Refund ID',
+        'status' => 'Status',
+        'refunded_amount' => 'Refunded amount',
+    ],
+];
