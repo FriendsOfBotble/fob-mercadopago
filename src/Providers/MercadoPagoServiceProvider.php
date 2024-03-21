@@ -6,8 +6,8 @@ use Botble\Base\Supports\ServiceProvider;
 use Botble\Base\Traits\LoadAndPublishDataTrait;
 use FriendsOfBotble\MercadoPago\Contracts\MercadoPagoClient as MercadoPagoClientContract;
 use FriendsOfBotble\MercadoPago\Facades\MercadoPagoPayment;
+use FriendsOfBotble\MercadoPago\MercadoPago\MercadoPagoConfig;
 use FriendsOfBotble\MercadoPago\MercadoPagoClient;
-use MercadoPago\MercadoPagoConfig;
 
 class MercadoPagoServiceProvider extends ServiceProvider
 {
@@ -27,10 +27,6 @@ class MercadoPagoServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        if (! class_exists(\MercadoPago\MercadoPagoConfig::class)) {
-            require_once __DIR__ . '/../../vendor/autoload.php';
-        }
-
         $this
             ->setNamespace('plugins/fob-mercadopago')
             ->loadAndPublishTranslations()

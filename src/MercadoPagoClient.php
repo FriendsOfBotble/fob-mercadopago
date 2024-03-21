@@ -3,16 +3,16 @@
 namespace FriendsOfBotble\MercadoPago;
 
 use FriendsOfBotble\MercadoPago\Contracts\MercadoPagoClient as MercadoPagoClientContract;
+use FriendsOfBotble\MercadoPago\MercadoPago\Client\Common\RequestOptions;
+use FriendsOfBotble\MercadoPago\MercadoPago\Client\Payment\PaymentClient;
+use FriendsOfBotble\MercadoPago\MercadoPago\Client\Payment\PaymentRefundClient;
+use FriendsOfBotble\MercadoPago\MercadoPago\Client\Preference\PreferenceClient;
+use FriendsOfBotble\MercadoPago\MercadoPago\MercadoPagoConfig;
+use FriendsOfBotble\MercadoPago\MercadoPago\Resources\Payment;
+use FriendsOfBotble\MercadoPago\MercadoPago\Resources\PaymentRefund;
+use FriendsOfBotble\MercadoPago\MercadoPago\Resources\PaymentRefundResult;
+use FriendsOfBotble\MercadoPago\MercadoPago\Resources\Preference;
 use Illuminate\Support\Str;
-use MercadoPago\Client\Common\RequestOptions;
-use MercadoPago\Client\Payment\PaymentClient;
-use MercadoPago\Client\Payment\PaymentRefundClient;
-use MercadoPago\Client\Preference\PreferenceClient;
-use MercadoPago\MercadoPagoConfig;
-use MercadoPago\Resources\Payment;
-use MercadoPago\Resources\PaymentRefund;
-use MercadoPago\Resources\PaymentRefundResult;
-use MercadoPago\Resources\Preference;
 
 class MercadoPagoClient implements MercadoPagoClientContract
 {

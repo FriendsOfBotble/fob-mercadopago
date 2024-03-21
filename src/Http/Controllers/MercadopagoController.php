@@ -10,14 +10,14 @@ use FriendsOfBotble\MercadoPago\Contracts\MercadoPagoClient;
 use FriendsOfBotble\MercadoPago\Facades\MercadoPagoPayment;
 use FriendsOfBotble\MercadoPago\Http\Requests\PaymentRequest;
 use FriendsOfBotble\MercadoPago\Http\Requests\WebhookRequest;
-use MercadoPago\Exceptions\MPApiException;
+use FriendsOfBotble\MercadoPago\MercadoPago\Exceptions\MPApiException;
 
 class MercadopagoController extends BaseController
 {
     public function callback(PaymentRequest $request, MercadoPagoClient $mercadoPagoClient)
     {
         try {
-            $payment = $mercadoPagoClient->getPayment($request->get('payment_id'));
+            $payment = $mercadoPagoClient->getPayment($request->input('payment_id'));
 
             do_action(PAYMENT_ACTION_PAYMENT_PROCESSED, [
                 'amount' => $payment->transaction_amount,

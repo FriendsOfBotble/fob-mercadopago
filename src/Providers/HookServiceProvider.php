@@ -9,8 +9,8 @@ use Botble\Payment\Models\Payment;
 use FriendsOfBotble\MercadoPago\Contracts\MercadoPagoClient as MercadoPagoClientContract;
 use FriendsOfBotble\MercadoPago\Facades\MercadoPagoPayment;
 use FriendsOfBotble\MercadoPago\Forms\MercadoPagoPaymentMethodForm;
+use FriendsOfBotble\MercadoPago\MercadoPago\Exceptions\MPApiException;
 use Illuminate\Http\Request;
-use MercadoPago\Exceptions\MPApiException;
 
 class HookServiceProvider extends ServiceProvider
 {

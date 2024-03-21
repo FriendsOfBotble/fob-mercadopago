@@ -5,10 +5,10 @@ namespace FriendsOfBotble\MercadoPago;
 use Botble\Language\Facades\Language;
 use Botble\Payment\Models\Payment;
 use FriendsOfBotble\MercadoPago\Contracts\MercadoPagoClient;
+use FriendsOfBotble\MercadoPago\MercadoPago\Exceptions\MPApiException;
+use FriendsOfBotble\MercadoPago\MercadoPago\Resources\PaymentRefund;
+use FriendsOfBotble\MercadoPago\MercadoPago\Resources\Preference;
 use Illuminate\Http\Request;
-use MercadoPago\Exceptions\MPApiException;
-use MercadoPago\Resources\PaymentRefund;
-use MercadoPago\Resources\Preference;
 
 class MercadoPagoPayment
 {

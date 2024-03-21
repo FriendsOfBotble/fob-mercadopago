@@ -2,10 +2,10 @@
 
 namespace FriendsOfBotble\MercadoPago\Contracts;
 
-use MercadoPago\Resources\Payment;
-use MercadoPago\Resources\PaymentRefund;
-use MercadoPago\Resources\PaymentRefundResult;
-use MercadoPago\Resources\Preference;
+use FriendsOfBotble\MercadoPago\MercadoPago\Resources\Payment;
+use FriendsOfBotble\MercadoPago\MercadoPago\Resources\PaymentRefund;
+use FriendsOfBotble\MercadoPago\MercadoPago\Resources\PaymentRefundResult;
+use FriendsOfBotble\MercadoPago\MercadoPago\Resources\Preference;
 
 interface MercadoPagoClient
 {
