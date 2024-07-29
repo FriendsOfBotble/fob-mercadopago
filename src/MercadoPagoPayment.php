@@ -53,7 +53,7 @@ class MercadoPagoPayment
                         'title' => $item['name'],
                         'picture_url' => $item['image'],
                         'currency_id' => $data['currency'],
-                        'quantity' => $item['qty'],
+                        'quantity' => (int)$item['qty'],
                         'unit_price' => $item['price_per_order'] / $item['qty'],
                     ], $data['products']),
                     'payer' => [
@@ -90,7 +90,7 @@ class MercadoPagoPayment
         } catch (MPApiException $e) {
             return [
                 'error' => true,
-                'message' => $e->getMessage(),
+                'message' => 'API error: ' . $e->getApiResponse()->getContent()['message'] ?? $e->getMessage(),
             ];
         }
     }
