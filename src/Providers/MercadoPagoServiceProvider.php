@@ -15,6 +15,15 @@ class MercadoPagoServiceProvider extends ServiceProvider
 
     public function register(): void
     {
+        if (
+            ! is_plugin_active('ecommerce') &&
+            ! is_plugin_active('job-board') &&
+            ! is_plugin_active('real-estate') &&
+            ! is_plugin_active('hotel')
+        ) {
+            return;
+        }
+
         $this->app->bind(MercadoPagoClientContract::class, function () {
             return new MercadoPagoClient(
                 get_payment_setting('access_token', MercadoPagoPayment::getId()),
@@ -27,6 +36,15 @@ class MercadoPagoServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        if (
+            ! is_plugin_active('ecommerce') &&
+            ! is_plugin_active('job-board') &&
+            ! is_plugin_active('real-estate') &&
+            ! is_plugin_active('hotel')
+        ) {
+            return;
+        }
+
         $this
             ->setNamespace('plugins/fob-mercadopago')
             ->loadAndPublishTranslations()

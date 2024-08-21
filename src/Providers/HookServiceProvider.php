@@ -3,7 +3,10 @@
 namespace FriendsOfBotble\MercadoPago\Providers;
 
 use Botble\Base\Supports\ServiceProvider;
-use Botble\Ecommerce\Models\Currency;
+use Botble\Ecommerce\Models\Currency as CurrencyEcommerce;
+use Botble\JobBoard\Models\Currency as CurrencyJobBoard;
+use Botble\RealEstate\Models\Currency as CurrencyRealEstate;
+use Botble\Hotel\Models\Currency as CurrencyHotel;
 use Botble\Payment\Enums\PaymentMethodEnum;
 use Botble\Payment\Models\Payment;
 use FriendsOfBotble\MercadoPago\Contracts\MercadoPagoClient as MercadoPagoClientContract;
@@ -76,7 +79,15 @@ class HookServiceProvider extends ServiceProvider
             $data = apply_filters(PAYMENT_FILTER_PAYMENT_DATA, [], $request);
 
             if (! in_array(strtoupper($currentCurrency->title), MercadoPagoPayment::supportedCurrencies())) {
-                $supportedCurrency = Currency::query()
+                $currency = match (true) {
+                    is_plugin_active('ecommerce') => CurrencyEcommerce::class,
+                    is_plugin_active('job-board') => CurrencyJobBoard::class,
+                    is_plugin_active('real-estate') => CurrencyRealEstate::class,
+                    is_plugin_active('hotel') => CurrencyHotel::class,
+                    default => null,
+                };
+
+                $supportedCurrency = $currency::query()
                     ->whereIn('title', MercadoPagoPayment::supportedCurrencies())
                     ->first();
 
