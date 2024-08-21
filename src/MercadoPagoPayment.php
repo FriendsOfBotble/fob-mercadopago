@@ -9,6 +9,7 @@ use FriendsOfBotble\MercadoPago\MercadoPago\Exceptions\MPApiException;
 use FriendsOfBotble\MercadoPago\MercadoPago\Resources\PaymentRefund;
 use FriendsOfBotble\MercadoPago\MercadoPago\Resources\Preference;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class MercadoPagoPayment
 {
@@ -49,12 +50,12 @@ class MercadoPagoPayment
                     'installments' => 1,
                     'default_installments' => 1,
                     'items' => array_map(fn ($item) => [
-                        'id' => $item['id'],
-                        'title' => $item['name'],
-                        'picture_url' => $item['image'],
-                        'currency_id' => $data['currency'],
-                        'quantity' => (int)$item['qty'],
-                        'unit_price' => $item['price_per_order'] / $item['qty'],
+                        'id' => Arr::get($item, 'id'),
+                        'title' => Arr::get($item, 'name'),
+                        'picture_url' => Arr::get($item, 'image'),
+                        'currency_id' => Arr::get($item, 'currency'),
+                        'quantity' => (int) $quantity = Arr::get($item, 'qty'),
+                        'unit_price' => Arr::get($item, 'price_per_order') / $quantity,
                     ], $data['products']),
                     'payer' => [
                         'name' => $data['address']['name'],
@@ -70,8 +71,8 @@ class MercadoPagoPayment
                     ],
                     'notification_url' => route('payment.mercadopago.webhook'),
                     'address' => [
-                        'zip_code' => $data['address']['zip_code'],
-                        'street_name' => $data['address']['address'],
+                        'zip_code' => $data['address']['zip_code'] ?? 'none',
+                        'street_name' => $data['address']['address'] ?? 'none',
                     ],
                     'metadata' => [
                         'order_id' => $data['order_id'],
