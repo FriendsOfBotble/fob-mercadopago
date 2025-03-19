@@ -38,7 +38,7 @@ class HookServiceProvider extends ServiceProvider
             $view = 'plugins/fob-mercadopago::payment-method';
 
             // Support old versions
-            if (! view()->exists('plugins/ecommerce::components.fronts.checkout.payment-method')) {
+            if (! view()->exists('plugins/payment::components.payment-method')) {
                 $view = 'plugins/fob-mercadopago::support-old-versions.payment-method';
             }
 
