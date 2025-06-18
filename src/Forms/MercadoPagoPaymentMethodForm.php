@@ -22,6 +22,7 @@ class MercadoPagoPaymentMethodForm extends PaymentMethodForm
             ->paymentDescription(__('Customer can buy product and pay directly using Visa, Credit card via :name', ['name' => MercadoPagoPayment::getDisplayName()]))
             ->defaultDescriptionValue('A conta PJ grátis para sua empresa. Simplifique a gestão da sua empresa pelo app, não importa onde você esteja.')
             ->paymentLogo(url('vendor/core/plugins/fob-mercadopago/images/mercadopago.png'))
+            ->paymentFeeField('mercadopago')
             ->paymentUrl('https://mercadopago.com')
             ->paymentInstructions(view('plugins/fob-mercadopago::instructions')->render())
             ->add(
