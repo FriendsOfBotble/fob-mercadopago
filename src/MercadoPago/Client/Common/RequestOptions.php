@@ -13,8 +13,8 @@ class RequestOptions
      */
     public function __construct(
         private ?string $access_token = null,
-        private  ?int $connection_timeout = null,
-        private  ?array $custom_headers = null
+        private ?int $connection_timeout = null,
+        private ?array $custom_headers = null
     ) {
     }
 
@@ -22,7 +22,7 @@ class RequestOptions
      * Get access token.
      * @return string|null access token.
      */
-    public function getAccessToken(): string | null
+    public function getAccessToken(): ?string
     {
         return $this->access_token;
     }
@@ -41,7 +41,7 @@ class RequestOptions
      * Get connection timeout.
      * @return int|null connection timeout.
      */
-    public function getConnectionTimeout(): int | null
+    public function getConnectionTimeout(): ?int
     {
         return $this->connection_timeout;
     }
@@ -60,7 +60,7 @@ class RequestOptions
      * Get custom headers.
      * @return array|null custom headers.
      */
-    public function getCustomHeaders(): array | null
+    public function getCustomHeaders(): ?array
     {
         return $this->custom_headers;
     }

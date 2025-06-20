@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\VerifyCsrfToken;
 use FriendsOfBotble\MercadoPago\Http\Controllers\MercadopagoController;
 use Illuminate\Support\Facades\Route;
 

@@ -4,11 +4,11 @@ namespace FriendsOfBotble\MercadoPago\Providers;
 
 use Botble\Base\Supports\ServiceProvider;
 use Botble\Ecommerce\Models\Currency as CurrencyEcommerce;
-use Botble\JobBoard\Models\Currency as CurrencyJobBoard;
-use Botble\RealEstate\Models\Currency as CurrencyRealEstate;
 use Botble\Hotel\Models\Currency as CurrencyHotel;
+use Botble\JobBoard\Models\Currency as CurrencyJobBoard;
 use Botble\Payment\Enums\PaymentMethodEnum;
 use Botble\Payment\Models\Payment;
+use Botble\RealEstate\Models\Currency as CurrencyRealEstate;
 use FriendsOfBotble\MercadoPago\Contracts\MercadoPagoClient as MercadoPagoClientContract;
 use FriendsOfBotble\MercadoPago\Facades\MercadoPagoPayment;
 use FriendsOfBotble\MercadoPago\Forms\MercadoPagoPaymentMethodForm;

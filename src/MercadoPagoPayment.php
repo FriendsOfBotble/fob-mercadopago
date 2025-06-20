@@ -39,24 +39,50 @@ class MercadoPagoPayment
             ];
         }
 
-        $data = apply_filters(PAYMENT_FILTER_PAYMENT_DATA, [], $request);
+        $paymentFee = (float) Arr::get($data, 'payment_fee', 0);
 
         try {
-            /** @var Preference $preference */
+            $items = array_map(fn ($item) => [
+                'id' => Arr::get($item, 'id'),
+                'title' => Arr::get($item, 'name'),
+                'picture_url' => Arr::get($item, 'image'),
+                'currency_id' => Arr::get($item, 'currency'),
+                'quantity' => (int) $quantity = Arr::get($item, 'qty'),
+                'unit_price' => Arr::get($item, 'price_per_order') / $quantity,
+            ], $data['products']);
+
+            if ($paymentFee > 0) {
+                $items[] = [
+                    'id' => 'payment_fee',
+                    'title' => trans('plugins/payment::payment.payment_fee'),
+                    'picture_url' => '',
+                    'currency_id' => $data['currency'],
+                    'quantity' => 1,
+                    'unit_price' => $paymentFee,
+                ];
+            }
+
+            if ($data['shipping_amount'] > 0) {
+                $items[] = [
+                    'id' => 'shipping',
+                    'title' => __('Shipping fee'),
+                    'picture_url' => '',
+                    'currency_id' => $data['currency'],
+                    'quantity' => 1,
+                    'unit_price' => $data['shipping_amount'],
+                ];
+            }
+
+            /**
+             * @var Preference $preference
+             */
             $preference = app(MercadoPagoClient::class)
                 ->createPreference([
                     'external_reference' => $data['order_id'][0],
                     'auto_return' => 'all',
                     'installments' => 1,
                     'default_installments' => 1,
-                    'items' => array_map(fn ($item) => [
-                        'id' => Arr::get($item, 'id'),
-                        'title' => Arr::get($item, 'name'),
-                        'picture_url' => Arr::get($item, 'image'),
-                        'currency_id' => Arr::get($item, 'currency'),
-                        'quantity' => (int) $quantity = Arr::get($item, 'qty'),
-                        'unit_price' => Arr::get($item, 'price_per_order') / $quantity,
-                    ], $data['products']),
+                    'items' => $items,
                     'payer' => [
                         'name' => $data['address']['name'],
                         'email' => $data['address']['email'],
@@ -79,6 +105,7 @@ class MercadoPagoPayment
                         'customer_id' => $data['customer_id'],
                         'customer_type' => $data['customer_type'],
                         'checkout_token' => $data['checkout_token'],
+                        'payment_fee' => $paymentFee,
                     ],
                 ]);
 
@@ -110,7 +137,9 @@ class MercadoPagoPayment
         }
 
         try {
-            /** @var PaymentRefund $response */
+            /**
+             * @var PaymentRefund $response
+             */
             $response = app(MercadoPagoClient::class)->createRefund($chargeId);
 
             return [

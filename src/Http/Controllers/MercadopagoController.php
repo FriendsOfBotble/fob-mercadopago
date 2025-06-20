@@ -3,6 +3,7 @@
 namespace FriendsOfBotble\MercadoPago\Http\Controllers;
 
 use Botble\Base\Http\Controllers\BaseController;
+use Botble\Hotel\Models\Booking;
 use Botble\Payment\Enums\PaymentStatusEnum;
 use Botble\Payment\Models\Payment as PaymentModel;
 use Botble\Payment\Supports\PaymentHelper;
@@ -11,7 +12,6 @@ use FriendsOfBotble\MercadoPago\Facades\MercadoPagoPayment;
 use FriendsOfBotble\MercadoPago\Http\Requests\PaymentRequest;
 use FriendsOfBotble\MercadoPago\Http\Requests\WebhookRequest;
 use FriendsOfBotble\MercadoPago\MercadoPago\Exceptions\MPApiException;
-use Botble\Hotel\Models\Booking;
 use Illuminate\Support\Arr;
 
 class MercadopagoController extends BaseController

@@ -18,7 +18,7 @@ class Serializer
         return self::_deserializeFromJson($entity, $data);
     }
 
-    private static function _deserializeFromJson(mixed $entity, mixed $data): object|null
+    private static function _deserializeFromJson(mixed $entity, mixed $data): ?object
     {
         if (! $data) {
             return null;
